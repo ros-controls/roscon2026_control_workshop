@@ -1,0 +1,15 @@
+# NVIDIA overlay for docker-compose.yaml. Requires the NVIDIA Container Toolkit.
+#   docker compose -f docker-compose.yaml -f docker-compose.nvidia.yaml up -d
+services:
+  workshop:
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - __GLX_VENDOR_LIBRARY_NAME=nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
