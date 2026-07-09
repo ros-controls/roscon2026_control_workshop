@@ -1,0 +1,26 @@
+# See README.md for usage. ./run.sh auto-selects the GPU backend.
+services:
+  workshop:
+    image: ghcr.io/ros-controls/roscon2026_control_workshop:latest
+    container_name: ros2_control_roscon26
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    stdin_open: true
+    tty: true
+    # Networking + IPC for ROS 2 / Zenoh.
+    network_mode: host
+    ipc: host
+    # Access to host hardware (GPU via /dev/dri, micro-controllers, etc.).
+    privileged: true
+    environment:
+      - ROS_DOMAIN_ID=0
+      - RMW_IMPLEMENTATION=rmw_zenoh_cpp
+      # Allow GUI programs (MuJoCo, RViz, PlotJuggler) to reach the host display.
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      - /dev:/dev
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${XAUTHORITY:-$HOME/.Xauthority}:/root/.Xauthority:rw
+    command: sleep infinity
