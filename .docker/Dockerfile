@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG ROS_DISTRO=jazzy
+ARG ROS_DISTRO=lyrical
 FROM ros:${ROS_DISTRO}-ros-base AS roscon-workshop
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
