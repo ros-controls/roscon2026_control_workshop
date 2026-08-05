@@ -23,7 +23,7 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y --no-install
       libglfw3 \
       mesa-utils \
       ros-${ROS_DISTRO}-plotjuggler \
-      ros-${ROS_DISTRO}-plotjuggler-ros \
+      # ros-${ROS_DISTRO}-plotjuggler-ros \
       ros-${ROS_DISTRO}-rmw-zenoh-cpp \
     && rm -rf /var/lib/apt/lists/*
 
@@ -52,12 +52,13 @@ RUN apt-get update \
          src/ros2_control_demos/example_18 \
          src/ros2_control_demos/ros2_control_demo_description \
          src/roscon2026_control_workshop \
+         src/plotjuggler_ros \
     && rm -rf /var/lib/apt/lists/*
 
 # Build example_18 and its workspace dependencies; capped parallelism bounds build memory.
 RUN source /opt/ros/${ROS_DISTRO}/setup.bash \
     && MAKEFLAGS="-j2" colcon build \
-         --packages-up-to ros2_control_demo_example_18 \
+         --packages-up-to ros2_control_demo_example_18 plotjuggler_ros \
          --parallel-workers 1 \
          --symlink-install \
          --cmake-args -DCMAKE_BUILD_TYPE=Release
