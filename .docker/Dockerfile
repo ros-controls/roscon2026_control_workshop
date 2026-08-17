@@ -6,6 +6,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG ROS_DISTRO
 ARG DEBIAN_FRONTEND=noninteractive
 
+# onnxruntime_vendor is only available in the ROS 2 testing apt source, so we need to add it.
+RUN apt-get update && apt-get install -y --no-install-recommends ros2-testing-apt-source \
+    && rm -rf /var/lib/apt/lists/*
+
 # OpenGL/GLFW runtime for the MuJoCo GUI and off-screen rendering.
 # glvnd dispatches to the NVIDIA driver (injected by the NVIDIA container
 # runtime) or to Mesa (Intel/AMD via /dev/dri); libglfw3 pulls the needed X11 libs.
@@ -45,8 +49,6 @@ COPY . src/roscon2026_control_workshop
 RUN apt-get update \
     && rosdep update --rosdistro ${ROS_DISTRO} \
     && rosdep install -iy --rosdistro ${ROS_DISTRO} --from-paths \
-         src/mujoco_ros2_control \
-         src/onnxruntime_vendor \
          src/ros2_control_demos/example_18 \
          src/ros2_control_demos/ros2_control_demo_description \
          src/roscon2026_control_workshop \
