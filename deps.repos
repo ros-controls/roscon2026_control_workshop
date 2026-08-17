@@ -3,3 +3,7 @@ repositories:
     type: git
     url: https://github.com/Juliaj/ros2_control_demos.git
     version: example_18
+  plotjuggler_ros:
+    type: git
+    url: https://github.com/PlotJuggler/plotjuggler-ros-plugins.git
+    version: main
