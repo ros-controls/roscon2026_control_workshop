@@ -6,7 +6,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG ROS_DISTRO
 ARG DEBIAN_FRONTEND=noninteractive
 
-# onnxruntime_vendor is only available in the ROS 2 testing apt source, so we need to add it.
+# Use ROS 2 testing apt source to get latest ros-controls releases independent of a distro sync
 RUN apt-get update && apt-get install -y --no-install-recommends ros2-testing-apt-source \
     && rm -rf /var/lib/apt/lists/*
 
