@@ -1,0 +1,7 @@
+# windows overlay for docker-compose.yaml. Requires docker and VcXsrv. See README.md for usage.
+#   docker compose -f docker-compose.yaml -f docker-compose.win.yaml up -d
+
+services:
+  workshop:
+    environment:
+      - DISPLAY=host.docker.internal:0
