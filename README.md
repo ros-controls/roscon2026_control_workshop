@@ -11,7 +11,7 @@ out of the box on both **NVIDIA** and **Intel/AMD** GPUs, using **Zenoh**
 - **NVIDIA hosts only:** the
   [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
 - An **X11** desktop session (the MuJoCo GUI uses OpenGL/GLFW over X11).
-- Windows: 
+- Windows:
   - Enable [Linux docker daemon](https://learn.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/set-up-linux-containers#run-your-first-linux-container).
   - Install [VcXsrv](https://sourceforge.net/projects/vcxsrv/)
   - Run `XLaunch` with default settings
