@@ -79,6 +79,8 @@ docker compose -f docker-compose.yaml pull
     OpenGL — run at the physical display, or use VirtualGL/TurboVNC.
 - **`glxinfo` shows `llvmpipe`:** you are on software rendering — the GPU is not
   passed through. Re-check the toolkit (NVIDIA) or `/dev/dri` (Mesa).
+- No windows appear with different errors: 
+  Run `xlcock` and `glxgears` to see if the X11 forwarding works.
 
 ## Dependencies
 
