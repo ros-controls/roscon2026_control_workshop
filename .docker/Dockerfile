@@ -22,6 +22,7 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y --no-install
       libgbm1 \
       libglfw3 \
       mesa-utils \
+      x11-apps \
       ros-${ROS_DISTRO}-plotjuggler \
       # ros-${ROS_DISTRO}-plotjuggler-ros \
       ros-${ROS_DISTRO}-rmw-zenoh-cpp \
