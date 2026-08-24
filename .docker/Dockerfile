@@ -71,7 +71,8 @@ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc \
     && echo "alias s='source ${ROS_WS}/install/setup.bash'" >> ~/.bashrc \
     && echo "alias cb='MAKEFLAGS=-j2 colcon build --packages-up-to ros2_control_demo_example_18 --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release'" >> ~/.bashrc \
     && echo "alias z='ros2 run rmw_zenoh_cpp rmw_zenohd'" >> ~/.bashrc \
-    && echo "alias demo='ros2 launch ros2_control_demo_example_18 example_18_mujoco.launch.py'" >> ~/.bashrc \
-    && echo "alias teleop='python3 \$(ros2 pkg prefix ros2_control_demo_example_18)/share/ros2_control_demo_example_18/launch/test_motions.py'" >> ~/.bashrc \
+    && echo "alias sim='ros2 launch kangaroo_mujoco kangaroo_mujoco.launch.py'" >> ~/.bashrc \
+    && echo "alias demo='ros2 launch pal_policy_deployer kang_mjlab_policy_deployer.launch.py'" >> ~/.bashrc \
+    && echo "alias teleop='ros2 run teleop_twist_keyboard teleop_twist_keyboard'" >> ~/.bashrc \
     && echo 'export RCUTILS_COLORIZED_OUTPUT=1' >> ~/.bashrc
 ENV TERM=xterm-color
