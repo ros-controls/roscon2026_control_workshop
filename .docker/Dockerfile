@@ -25,6 +25,7 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y --no-install
       ros-${ROS_DISTRO}-plotjuggler \
       # ros-${ROS_DISTRO}-plotjuggler-ros \
       ros-${ROS_DISTRO}-rmw-zenoh-cpp \
+      ros-${ROS_DISTRO}-teleop-twist-keyboard \
     && rm -rf /var/lib/apt/lists/*
 
 # Use Zenoh as the ROS 2 middleware for the workshop.
