@@ -53,17 +53,7 @@ RUN apt-get update \
          src/ros2_control_demos/ros2_control_demo_description \
          src/roscon2026_control_workshop \
          src/plotjuggler_ros \
-         src/launch_pal \
-         src/pal_urdf_utils \
-         src/pal_sea_arm \
-         src/kangaroo_moveit_config \
-         src/urdf_test \
-         src/kangaroo_simulation \
-         src/kangaroo_robot \
-         src/mujoco_ros2_control \
-         src/pal_pro_gripper \
-         src/pal_sea_arm_moveit_config \
-         src/pal_policy_deployer \
+         src/pal \
          --skip-keys="pal_gazebo_worlds" \
     && rm -rf /var/lib/apt/lists/*
 
