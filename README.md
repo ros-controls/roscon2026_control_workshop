@@ -9,8 +9,12 @@ Runs a PAL Robotics Kangaroo Simulation out of the box on both **NVIDIA** and **
 - **NVIDIA hosts only:** the
   [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
 - An **X11** desktop session (the MuJoCo GUI uses OpenGL/GLFW over X11).
+- Windows:
+  - Enable [Linux docker daemon](https://learn.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/set-up-linux-containers#run-your-first-linux-container).
+  - Install [VcXsrv](https://sourceforge.net/projects/vcxsrv/)
+  - Run `XLaunch` with default settings
 
-## Quick start
+## Quick start (Linux)
 
 ```bash
 # from the repo root
@@ -50,6 +54,15 @@ docker compose -f docker-compose.yaml up -d
 
 # NVIDIA (NVIDIA Container Toolkit)
 docker compose -f docker-compose.yaml -f docker-compose.nvidia.yaml up -d
+```
+
+## Windows
+There is no wrapper shell script, instead use explicit one of the following
+
+```bash
+docker compose -f docker-compose.yaml -f docker-compose.win.yaml up -d
+docker compose -f docker-compose.yaml down
+docker compose -f docker-compose.yaml -f docker-compose.win.yaml build
 ```
 
 ## Building / pulling
