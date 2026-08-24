@@ -49,7 +49,7 @@ COPY . src/roscon2026_control_workshop
 # Resolve deps only for example_18 and its dependencies.
 RUN apt-get update \
     && rosdep update --rosdistro ${ROS_DISTRO} \
-    && rosdep install --ignore-src -iy --rosdistro ${ROS_DISTRO} --from-paths \
+    && rosdep install --ignore-src -y --rosdistro ${ROS_DISTRO} --from-paths \
          src/ros2_control_demos/example_18 \
          src/ros2_control_demos/ros2_control_demo_description \
          src/roscon2026_control_workshop \
