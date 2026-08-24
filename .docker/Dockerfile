@@ -25,6 +25,7 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y --no-install
       ros-${ROS_DISTRO}-plotjuggler \
       # ros-${ROS_DISTRO}-plotjuggler-ros \
       ros-${ROS_DISTRO}-rmw-zenoh-cpp \
+      ros-${ROS_DISTRO}-teleop-twist-keyboard \
     && rm -rf /var/lib/apt/lists/*
 
 # Use Zenoh as the ROS 2 middleware for the workshop.
@@ -48,17 +49,19 @@ COPY . src/roscon2026_control_workshop
 # Resolve deps only for example_18 and its dependencies.
 RUN apt-get update \
     && rosdep update --rosdistro ${ROS_DISTRO} \
-    && rosdep install -iy --rosdistro ${ROS_DISTRO} --from-paths \
+    && rosdep install --ignore-src -y --rosdistro ${ROS_DISTRO} --from-paths \
          src/ros2_control_demos/example_18 \
          src/ros2_control_demos/ros2_control_demo_description \
          src/roscon2026_control_workshop \
          src/plotjuggler_ros \
+         src/pal \
+         --skip-keys="pal_gazebo_worlds" \
     && rm -rf /var/lib/apt/lists/*
 
 # Build example_18 and its workspace dependencies; capped parallelism bounds build memory.
 RUN source /opt/ros/${ROS_DISTRO}/setup.bash \
     && MAKEFLAGS="-j2" colcon build \
-         --packages-up-to ros2_control_demo_example_18 plotjuggler_ros \
+         --packages-up-to ros2_control_demo_example_18 plotjuggler_ros kangaroo_mujoco kangaroo_description kangaroo_moveit_config pal_policy_deployer pal_policy_inferer \
          --parallel-workers 1 \
          --symlink-install \
          --cmake-args -DCMAKE_BUILD_TYPE=Release
@@ -69,7 +72,8 @@ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc \
     && echo "alias s='source ${ROS_WS}/install/setup.bash'" >> ~/.bashrc \
     && echo "alias cb='MAKEFLAGS=-j2 colcon build --packages-up-to ros2_control_demo_example_18 --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release'" >> ~/.bashrc \
     && echo "alias z='ros2 run rmw_zenoh_cpp rmw_zenohd'" >> ~/.bashrc \
-    && echo "alias demo='ros2 launch ros2_control_demo_example_18 example_18_mujoco.launch.py'" >> ~/.bashrc \
-    && echo "alias teleop='python3 \$(ros2 pkg prefix ros2_control_demo_example_18)/share/ros2_control_demo_example_18/launch/test_motions.py'" >> ~/.bashrc \
+    && echo "alias sim='ros2 launch kangaroo_mujoco kangaroo_mujoco.launch.py'" >> ~/.bashrc \
+    && echo "alias demo='ros2 launch pal_policy_deployer kang_mjlab_policy_deployer.launch.py'" >> ~/.bashrc \
+    && echo "alias teleop='ros2 run teleop_twist_keyboard teleop_twist_keyboard'" >> ~/.bashrc \
     && echo 'export RCUTILS_COLORIZED_OUTPUT=1' >> ~/.bashrc
 ENV TERM=xterm-color

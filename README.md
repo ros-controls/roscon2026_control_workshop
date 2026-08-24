@@ -1,8 +1,6 @@
 # ROSCon 2026 ros2_control Workshop — Docker environment
 
-Runs the Open Duck Mini MuJoCo demo
-(`ros2 launch ros2_control_demo_example_18 example_18_mujoco.launch.py`)
-out of the box on both **NVIDIA** and **Intel/AMD** GPUs, using **Zenoh**
+Runs a PAL Robotics Kangaroo Simulation out of the box on both **NVIDIA** and **Intel/AMD** GPUs, using **Zenoh**
 (`rmw_zenoh_cpp`) as the ROS 2 middleware.
 
 ## Prerequisites
@@ -25,17 +23,20 @@ Add this handy alias to your host `~/.bashrc`:
 echo 'alias rc="docker exec -it ros2_control_roscon26 bash"' >> ~/.bashrc
 ```
 
-Running the demo needs **three terminals**, each attached to the container with
-`rc`. Aliases (`z`, `demo`, `teleop`) are preconfigured in the container.
+Running the demo needs **four terminals**, each attached to the container with
+`rc`. Aliases (`z`, `sim`, `demo`, `teleop`) are preconfigured in the container.
 
 ```bash
 # Terminal 1 — Zenoh router
 z
 
-# Terminal 2 — MuJoCo simulation + controllers
+# Terminal 2 — MuJoCo simulation
+sim
+
+# Terminal 3 — Run the policy
 demo
 
-# Terminal 3 — drive the duck forward
+# Terminal 4 — drive the humanoid around
 teleop
 ```
 
