@@ -9,6 +9,7 @@
           <param name="example_param_hw_start_duration_sec">0</param>
           <param name="example_param_hw_stop_duration_sec">3.0</param>
           <param name="example_param_hw_slowdown">100</param>
+          <param name="write_processing_time_ms">5</param>
       </hardware>
 
       <joint name="${prefix}joint1">

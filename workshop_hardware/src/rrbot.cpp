@@ -42,6 +42,7 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_init(
   hw_start_sec_ = stod(info_.hardware_parameters["example_param_hw_start_duration_sec"]);
   hw_stop_sec_ = stod(info_.hardware_parameters["example_param_hw_stop_duration_sec"]);
   hw_slowdown_ = stod(info_.hardware_parameters["example_param_hw_slowdown"]);
+  write_processing_time_ms_ = stod(info_.hardware_parameters["write_processing_time_ms"]);
   // END: This part here is for exemplary purposes - Please do not copy to your production code
 
   for (const hardware_interface::ComponentInfo & joint : info_.joints)
@@ -187,6 +188,8 @@ hardware_interface::return_type RRBotSystemPositionOnlyHardware::write(
     ss << std::fixed << std::setprecision(2) << std::endl
        << "\t" << get_command(name) << " for joint '" << name << "'";
   }
+  rclcpp::sleep_for(std::chrono::milliseconds(static_cast<int>(write_processing_time_ms_)));
+
   RCLCPP_INFO_THROTTLE(get_logger(), *get_clock(), 500, "%s", ss.str().c_str());
   // END: This part here is for exemplary purposes - Please do not copy to your production code
 

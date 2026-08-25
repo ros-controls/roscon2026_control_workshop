@@ -65,3 +65,42 @@ sleepy_controller           workshop_controllers/SleepyController               
 ```bash
 [ros2_control_node-1] [WARN] [1787660029.598285066] [sleepy_controller]: The controller missed 662 update cycles out of 2750 total triggers.
 ```
+
+## Async Hardware Hands-On
+
+* Increase processing time
+  ```xml
+    <hardware>
+        <plugin>workshop_hardware/RRBotSystemPositionOnlyHardware</plugin>
+        ...
+        <param name="write_processing_time_ms">75</param>
+    </hardware>
+  ```
+
+* See results in plotjuggler and console log
+* Configure async and scheduling_policy
+  ```xml
+      <ros2_control name="${name}" type="system"
+                is_async="true" rw_rate="5">
+        <properties>
+          <async thread_priority="60"
+                  scheduling_policy="detached"
+                  print_warnings="true"/>
+        </properties>
+      </ros2_control>
+  ```
+* Restart, and see if it worked
+  ```bash
+  $ ros2 control list_hardware_components
+  Hardware Component 1
+          name: RRBot
+          type: system
+          plugin name: workshop_hardware/RRBotSystemPositionOnlyHardware
+          state: id=3 label=active
+          read/write rate: 5 Hz
+          is_async: True
+          command interfaces
+                  joint2/position [available] [claimed]
+                  joint1/position [available] [claimed]
+  ```
+  or with `ros2 run rqt_controller_manager rqt_controller_manager`

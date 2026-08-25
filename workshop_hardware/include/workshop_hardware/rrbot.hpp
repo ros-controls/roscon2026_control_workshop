@@ -57,6 +57,7 @@ private:
   double hw_start_sec_;
   double hw_stop_sec_;
   double hw_slowdown_;
+  double write_processing_time_ms_;
 };
 
 }  // namespace workshop_hardware
