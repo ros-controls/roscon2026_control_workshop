@@ -1,0 +1,42 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 10  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+
+# First-level controllers
+joint1_position_controller:
+  ros__parameters:
+    type: passthrough_controller/PassthroughController
+    interfaces: ["joint1/position"]
+
+joint2_position_controller:
+  ros__parameters:
+    type: passthrough_controller/PassthroughController
+    interfaces: ["joint2/position"]
+
+# Second-level controller
+position_controller:
+  ros__parameters:
+    type: passthrough_controller/PassthroughController
+    interfaces:
+      - joint1_position_controller/joint1/position
+      - joint2_position_controller/joint2/position
+
+# Third-level controllers
+forward_position_controller:
+  ros__parameters:
+    type: forward_command_controller/ForwardCommandController
+    joints:
+      - position_controller/joint1_position_controller/joint1
+      - position_controller/joint2_position_controller/joint2
+    interface_name: position
+
+# our custom sleepy controller
+sleepy_controller:
+  ros__parameters:
+    type: workshop_controllers/SleepyController
+    max_sleep_time: 0.5
+    # is_async: true
