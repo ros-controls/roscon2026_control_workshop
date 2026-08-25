@@ -11,10 +11,10 @@
 
   <depend>controller_manager</depend>
   <depend>plotjuggler_ros</depend>
-  <depend>ros2_control_demo_example_12</depend>
   <depend>ros2controlcli</depend>
   <depend>swri_console</depend>
   <depend>workshop_controllers</depend>
+  <depend>workshop_description</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

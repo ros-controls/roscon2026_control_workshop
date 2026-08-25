@@ -35,9 +35,7 @@ def generate_launch_description():
                 package="controller_manager",
                 executable="ros2_control_node",
                 parameters=[
-                    PathSubstitution(FindPackageShare("ros2_control_demo_example_12"))
-                    / "config"
-                    / "rrbot_chained_controllers.yaml"
+                    PathSubstitution(FindPackageShare("workshop_bringup")) / "config" / "rrbot_chained_controllers.yaml"
                 ],
                 output="both",
             ),
@@ -52,7 +50,7 @@ def generate_launch_description():
                             [
                                 "xacro",
                                 " ",
-                                PathSubstitution(FindPackageShare("ros2_control_demo_example_12"))
+                                PathSubstitution(FindPackageShare("workshop_description"))
                                 / "urdf"
                                 / "rrbot.urdf.xacro",
                             ]

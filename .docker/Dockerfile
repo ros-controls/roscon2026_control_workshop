@@ -48,11 +48,10 @@ RUN vcs import src < /tmp/deps.repos
 # The workshop repo's own packages.
 COPY . src/roscon2026_control_workshop
 
-# Resolve deps only for example_18 and its dependencies.
+# Resolve deps only for workshop_bringup and PAL Robotics Kangaroo
 RUN apt-get update \
     && rosdep update --rosdistro ${ROS_DISTRO} \
     && rosdep install --ignore-src -y --rosdistro ${ROS_DISTRO} --from-paths \
-         src/ros2_control_demos/example_12 \
          src/ros2_control_demos/ros2_control_demo_description \
          src/roscon2026_control_workshop \
          src/plotjuggler_ros \
