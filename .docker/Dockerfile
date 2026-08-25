@@ -1,14 +1,10 @@
 # syntax=docker/dockerfile:1
 ARG ROS_DISTRO=lyrical
-FROM ros:${ROS_DISTRO}-ros-base AS roscon-workshop
+FROM ghcr.io/ros-controls/ros:${ROS_DISTRO}-ubuntu-testing
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG ROS_DISTRO
 ARG DEBIAN_FRONTEND=noninteractive
-
-# Use ROS 2 testing apt source to get latest ros-controls releases independent of a distro sync
-RUN apt-get update && apt-get install -y --no-install-recommends ros2-testing-apt-source \
-    && rm -rf /var/lib/apt/lists/*
 
 # OpenGL/GLFW runtime for the MuJoCo GUI and off-screen rendering.
 # glvnd dispatches to the NVIDIA driver (injected by the NVIDIA container
