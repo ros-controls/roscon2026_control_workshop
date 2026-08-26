@@ -52,11 +52,12 @@ COPY . src/roscon2026_control_workshop
 RUN apt-get update \
     && rosdep update --rosdistro ${ROS_DISTRO} \
     && rosdep install --ignore-src -y --rosdistro ${ROS_DISTRO} --from-paths \
+         src/ros2_control_demos/example_12 \
          src/ros2_control_demos/ros2_control_demo_description \
          src/roscon2026_control_workshop \
          src/plotjuggler_ros \
          src/pal \
-         --skip-keys="pal_gazebo_worlds" \
+         --skip-keys="pal_gazebo_worlds joint_trajectory_controller" \
     && rm -rf /var/lib/apt/lists/*
 
 # Build workshop examples and its workspace dependencies; capped parallelism bounds build memory.
