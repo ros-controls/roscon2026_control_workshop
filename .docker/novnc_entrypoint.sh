@@ -10,11 +10,6 @@
 
 set -e
 
-source "/opt/ros/${ROS_DISTRO}/setup.bash"
-# Optional in dev images where the colcon layer was skipped.
-[ -f "${ROS_WS:-/root/workshop_ws}/install/setup.bash" ] \
-    && source "${ROS_WS:-/root/workshop_ws}/install/setup.bash" || true
-
 export DISPLAY="${DISPLAY:-:99}"
 
 start_novnc() {

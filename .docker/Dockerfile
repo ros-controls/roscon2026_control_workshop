@@ -71,7 +71,7 @@ RUN apt-get update \
 #          --packages-up-to ros2_control_demo_example_18 plotjuggler_ros kangaroo_mujoco kangaroo_description kangaroo_moveit_config pal_policy_deployer pal_policy_inferer \
 #          --parallel-workers 1 \
 #          --symlink-install \
-#          --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-Wno-error=conversion"
+#          --cmake-args -DCMAKE_BUILD_TYPE=Release
 
 # Interactive shell UX.
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc \
