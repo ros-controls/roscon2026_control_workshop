@@ -13,9 +13,6 @@ services:
     ipc: host
     # Access to host hardware (GPU via /dev/dri, micro-controllers, etc.).
     privileged: true
-    # ports:
-    #   - "6080:6080"
-    #   - "5900:5900"
     environment:
       - ROS_DOMAIN_ID=0
       - RMW_IMPLEMENTATION=rmw_zenoh_cpp
