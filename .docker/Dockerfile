@@ -27,6 +27,12 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y --no-install
       # ros-${ROS_DISTRO}-plotjuggler-ros \
       ros-${ROS_DISTRO}-rmw-zenoh-cpp \
       ros-${ROS_DISTRO}-teleop-twist-keyboard \
+      # noVNC stack: virtual display + VNC server + browser client.
+      xvfb \
+      x11vnc \
+      fluxbox \
+      novnc \
+      websockify \
     && rm -rf /var/lib/apt/lists/*
 
 # Use Zenoh as the ROS 2 middleware for the workshop.
@@ -60,12 +66,12 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Build example_18 and its workspace dependencies; capped parallelism bounds build memory.
-RUN source /opt/ros/${ROS_DISTRO}/setup.bash \
-    && MAKEFLAGS="-j2" colcon build \
-         --packages-up-to ros2_control_demo_example_18 plotjuggler_ros kangaroo_mujoco kangaroo_description kangaroo_moveit_config pal_policy_deployer pal_policy_inferer \
-         --parallel-workers 1 \
-         --symlink-install \
-         --cmake-args -DCMAKE_BUILD_TYPE=Release
+# RUN source /opt/ros/${ROS_DISTRO}/setup.bash \
+#     && MAKEFLAGS="-j2" colcon build \
+#          --packages-up-to ros2_control_demo_example_18 plotjuggler_ros kangaroo_mujoco kangaroo_description kangaroo_moveit_config pal_policy_deployer pal_policy_inferer \
+#          --parallel-workers 1 \
+#          --symlink-install \
+#          --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-Wno-error=conversion"
 
 # Interactive shell UX.
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc \
@@ -78,3 +84,7 @@ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc \
     && echo "alias teleop='ros2 run teleop_twist_keyboard teleop_twist_keyboard'" >> ~/.bashrc \
     && echo 'export RCUTILS_COLORIZED_OUTPUT=1' >> ~/.bashrc
 ENV TERM=xterm-color
+
+COPY .docker/novnc_entrypoint.sh /usr/local/bin/novnc_entrypoint.sh
+RUN chmod +x /usr/local/bin/novnc_entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/novnc_entrypoint.sh"]
