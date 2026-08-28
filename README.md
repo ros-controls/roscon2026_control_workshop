@@ -66,7 +66,7 @@ docker compose -f docker-compose.yaml -f docker-compose.win.yaml build
 ```
 
 ## Mac
-To run the workshop on the mac, follow these commands or run.sh script to start the docker compose. Then, you can open the web browser with URL `http://localhost:6080/vnc.html` to view GUIs.
+By default the container renders onto the host X11 display. On hosts without a reachable physical display (e.g. macOS, headless/remote sessions) add the `noVNC` overlay; it starts Xvfb + X11VNC + noVNC so GUIs are served in a browser at <http://localhost:6080/vnc.html>:
 
 > [!IMPORTANT]
 > You need to check **Enable host networking** in **Settings** → **Resources** → **Network** on Docker Desktop.
@@ -75,9 +75,9 @@ To run the workshop on the mac, follow these commands or run.sh script to start 
 
 ```bash
 export DISPLAY=:99
-docker compose -f docker-compose.yaml up -d
+docker compose -f docker-compose.yaml -f docker-compose.novnc.yaml up -d
 docker compose -f docker-compose.yaml down
-docker compose -f docker-compose.yaml build
+docker compose -f docker-compose.yaml -f docker-compose.novnc.yaml build
 ```
 
 ## Building / pulling

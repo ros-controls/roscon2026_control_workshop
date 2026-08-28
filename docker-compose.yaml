@@ -19,10 +19,7 @@ services:
       # Allow GUI programs (MuJoCo, RViz, PlotJuggler) to reach the host display.
       - DISPLAY=${DISPLAY:-:99}
       - QT_X11_NO_MITSHM=1
-      - VNC_PORT=5900
-      - NOVNC_PORT=6080   # can match host port now, no collision to avoid
-      - SCREEN_GEOMETRY=1920x1080x24
-      - USE_HOST_DISPLAY=${USE_HOST_DISPLAY:-0}
+      - USE_HOST_DISPLAY=${USE_HOST_DISPLAY:-1}
     volumes:
       - /dev:/dev
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
