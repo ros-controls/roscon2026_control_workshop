@@ -17,8 +17,9 @@ services:
       - ROS_DOMAIN_ID=0
       - RMW_IMPLEMENTATION=rmw_zenoh_cpp
       # Allow GUI programs (MuJoCo, RViz, PlotJuggler) to reach the host display.
-      - DISPLAY=${DISPLAY}
+      - DISPLAY=${DISPLAY:-:99}
       - QT_X11_NO_MITSHM=1
+      - USE_HOST_DISPLAY=${USE_HOST_DISPLAY:-1}
     volumes:
       - /dev:/dev
       - /tmp/.X11-unix:/tmp/.X11-unix:rw

@@ -65,6 +65,21 @@ docker compose -f docker-compose.yaml down
 docker compose -f docker-compose.yaml -f docker-compose.win.yaml build
 ```
 
+## Mac
+By default the container renders onto the host X11 display. On hosts without a reachable physical display (e.g. macOS, headless/remote sessions) add the `noVNC` overlay; it starts Xvfb + X11VNC + noVNC so GUIs are served in a browser at <http://localhost:6080/vnc.html>:
+
+> [!IMPORTANT]
+> You need to check **Enable host networking** in **Settings** → **Resources** → **Network** on Docker Desktop.
+>
+> Before running the docker image, set `export DISPLAY=:99`.
+
+```bash
+export DISPLAY=:99
+docker compose -f docker-compose.yaml -f docker-compose.novnc.yaml up -d
+docker compose -f docker-compose.yaml down
+docker compose -f docker-compose.yaml -f docker-compose.novnc.yaml build
+```
+
 ## Building / pulling
 
 ```bash
