@@ -18,6 +18,7 @@ joint_state_broadcaster     joint_state_broadcaster/JointStateBroadcaster       
 
 ```bash
 $ ros2 control view_controller_chains --save
+$ qpdfview controller_diagram.pdf
 ```
 
 
@@ -26,7 +27,7 @@ $ ros2 run plotjuggler plotjuggler --layout src/roscon2026_control_workshop/work
 ```
 
 ```bash
-ros2 service call /sleepy_controller/set_slow_control_mode example_interfaces/srv/SetBool "data: true"
+$ ros2 service call /sleepy_controller/set_slow_control_mode example_interfaces/srv/SetBool "data: true"
 ```
 
 ```bash
