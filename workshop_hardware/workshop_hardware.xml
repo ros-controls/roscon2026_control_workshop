@@ -1,0 +1,9 @@
+<library path="workshop_hardware">
+  <class name="workshop_hardware/RRBotSystemPositionOnlyHardware"
+         type="workshop_hardware::RRBotSystemPositionOnlyHardware"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      The ros2_control RRbot example using a system hardware interface-type.
+    </description>
+  </class>
+</library>
