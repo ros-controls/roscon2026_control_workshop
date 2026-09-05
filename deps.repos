@@ -3,6 +3,10 @@ repositories:
     type: git
     url: https://github.com/ros-controls/ros2_control_demos.git
     version: master
+  mujoco_ros2_control:
+    type: git
+    url: https://github.com/ros-controls/mujoco_ros2_control.git
+    version: main
   plotjuggler_ros:
     type: git
     url: https://github.com/PlotJuggler/plotjuggler-ros-plugins.git
@@ -23,10 +27,6 @@ repositories:
     type: git
     url: https://github.com/pal-robotics/kangaroo_moveit_config.git
     version: lyrical/support
-  pal/urdf_test:
-    type: git
-    url: https://github.com/pal-robotics/urdf_test.git
-    version: humble-devel
   pal/kangaroo_simulation:
     type: git
     url: https://github.com/pal-robotics/kangaroo_simulation.git
@@ -35,10 +35,6 @@ repositories:
     type: git
     url: https://github.com/pal-robotics/kangaroo_robot.git
     version: humble-devel
-  pal/mujoco_ros2_control:
-    type: git
-    url: https://github.com/ros-controls/mujoco_ros2_control.git
-    version: main
   pal/pal_pro_gripper:
     type: git
     url: https://github.com/pal-robotics/pal_pro_gripper.git
