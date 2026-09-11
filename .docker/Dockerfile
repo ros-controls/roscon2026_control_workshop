@@ -62,7 +62,6 @@ RUN apt-get update \
     && rosdep install --ignore-src -y --rosdistro ${ROS_DISTRO} --from-paths \
          src/ros2_control_demos/example_12 \
          src/ros2_control_demos/ros2_control_demo_description \
-         src/ros2_control/ros2controlcli \
          src/roscon2026_control_workshop \
          src/plotjuggler_ros \
          src/pal \
