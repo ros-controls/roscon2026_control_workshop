@@ -36,6 +36,10 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y --no-install
       websockify \
       # for pdf viewing
       xdg-utils qpdfview \
+      # common editors
+      vim \
+      nano \
+      gedit \
     && rm -rf /var/lib/apt/lists/*
 
 # Use Zenoh as the ROS 2 middleware for the workshop.
