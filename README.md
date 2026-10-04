@@ -3,6 +3,8 @@
 Runs a PAL Robotics Kangaroo Simulation out of the box on both **NVIDIA** and **Intel/AMD** GPUs, using **Zenoh**
 (`rmw_zenoh_cpp`) as the ROS 2 middleware.
 
+See the [workshop slides](https://control.ros.org/rolling/_downloads/66b43d3e68091c64ce322bedf808662e/ROSCon2026_Workshop_From-async-hw-drivers-to-RL-inference-engines.pdf) for more info.
+
 ## Prerequisites
 
 - [Docker + Docker Compose](https://docs.docker.com/compose/install/linux/).
@@ -26,7 +28,10 @@ Add this handy alias to your host `~/.bashrc`:
 ```bash
 echo 'alias rc="docker exec -it ros2_control_roscon26 bash"' >> ~/.bashrc
 ```
+### Part 1: Analysis of RT cycle and Decoupling I/O
+See [workshop_bringup/README.md](workshop_bringup/README.md)
 
+### Part 2: RL Deployment
 Running the demo needs **four terminals**, each attached to the container with
 `rc`. Aliases (`z`, `sim`, `demo`, `teleop`) are preconfigured in the container.
 

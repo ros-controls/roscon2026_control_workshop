@@ -1,6 +1,15 @@
 
 # Async Hands-On
 
+Running the demo needs **several terminals**, each attached to the container with
+`rc`.
+
+```bash
+# Terminal 1 — Zenoh router
+z
+```
+and others for launching the analysis tools. To change the config files attach your IDE to the running container or use text editors like nano or vim from another terminal.
+
 ## The Synchronous Problem
 Starting a simple example
 ```bash
